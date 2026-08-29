@@ -1,0 +1,9 @@
+#Ambiente
+.venv/
+
+#Cache
+__pycache__/
+*.pyc 
+
+#Banco de dados
+data/database.json
