@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from controllers.cliente_controller import escrever_arquivo, listar_usuarios, criar_usuario, validar_usuario, buscar_por_id, atualizar_dados_usuario, delete
+from controllers.usuarios_controller import escrever_arquivo, listar_usuarios, criar_usuario, validar_usuario, buscar_por_id, atualizar_dados_usuario, delete
 
 usuarios_bp = Blueprint('usuarios', __name__)
 

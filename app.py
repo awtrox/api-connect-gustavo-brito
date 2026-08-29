@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from routes.clientes_routes import usuarios_bp
+from routes.usuarios_routes import usuarios_bp
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False

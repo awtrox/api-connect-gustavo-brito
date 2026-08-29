@@ -78,3 +78,4 @@ def delete(lista, id_procurado):
             lista.remove(i)
             break
     escrever_arquivo(lista)
+
