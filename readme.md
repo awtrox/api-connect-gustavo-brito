@@ -1,4 +1,4 @@
-# API RESTful de Gestão de Clientes
+# API RESTful de Gestão de Usuários
 
 Esta é uma API REST desenvolvida em Python com o framework Flask para o gerenciamento de usuários. O projeto implementa um CRUD completo e utiliza manipulação em memória com persistência em arquivo JSON, mantendo uma arquitetura modular focada na Separação de Responsabilidades (SoC).
 
