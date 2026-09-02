@@ -59,6 +59,23 @@ def buscar_por_id(tabela, id_procurado):
         if i.get("id") == id_procurado:
             return i
     return None
+
+def validar_dados_atualizacao(requisicao):
+    if not requisicao or not isinstance(requisicao, dict):
+        return {"error": "O corpo da requisição deve conter um json válido."}
+    erros_encontrados = []
+    if "nome" in requisicao and not str(requisicao["nome"]).strip():
+        erros_encontrados.append("nome não pode ficar em branco")
+    if "email" in requisicao and not str(requisicao["email"]).strip():
+        erros_encontrados.append("email não pode ficar em branco")
+    if "status" in requisicao and not str(requisicao["status"]).strip():
+        erros_encontrados.append("status não pode ficar em branco")
+
+    if erros_encontrados:
+        erros_formatados = ", ".join(erros_encontrados)
+        return {"error": f"Dados inválidos: {erros_formatados}"}
+    
+    return None
     
 def atualizar_dados_usuario(usuario, requisicao):
     if requisicao.get("nome"):
