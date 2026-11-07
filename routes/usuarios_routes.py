@@ -14,7 +14,7 @@ def inserir_usuarios():
     lista_usuarios = listar_usuarios()
     erro_validacao = validar_usuario(dados_requisicao)
     if erro_validacao:
-        return jsonify(erro_validacao), 400
+        return jsonify({"error": erro_validacao}), 400
     usuario_criado = criar_usuario(lista_usuarios, dados_requisicao.get("nome"), dados_requisicao.get("email"), dados_requisicao.get("status"))
     return jsonify({"data": usuario_criado}), 201
 

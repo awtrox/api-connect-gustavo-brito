@@ -4,6 +4,10 @@
 #Cache
 __pycache__/
 *.pyc 
+.pytest_cache
 
 #Banco de dados
 data/database.json
+
+#Testes
+reqtest.http

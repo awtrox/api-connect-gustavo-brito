@@ -39,20 +39,27 @@ def criar_usuario(tabela, nome, email, status):
     atualizar_arquivo(tabela, novo_usuario)
     return novo_usuario
 
+def validar_campo(valor):
+    """Valida cada campo da requisição é uma str válida."""
+    if valor is None:
+        return "campo obrigatorio ausente"
+    if not isinstance(valor, str):
+        return "formato invalido"
+    if not valor.strip():
+        return "campo obrigatorio ausente"
+    return None
+
 def validar_usuario(requisicao):
     if not requisicao or not isinstance(requisicao, dict):
         return {"error": "O corpo da requisição deve conter um json válido."}
-    erros_encontrados = []
-    if not requisicao.get("nome"):
-        erros_encontrados.append("nome")
-    if not requisicao.get("email"):
-        erros_encontrados.append("email")
-    if not requisicao.get("status"):
-        erros_encontrados.append("status")
-    if erros_encontrados:
-        campos = ", ".join(erros_encontrados)
-        return {"error": f"Campos obrigatorios ausentes: {campos}"}
-    return None
+    erros = {}
+    CAMPOS_USUARIO = {"nome", "email", "status"}
+
+    for campo in CAMPOS_USUARIO:
+        problema = validar_campo(requisicao.get(campo))
+        if problema:
+            erros[campo] = problema
+    return erros
 
 def buscar_por_id(tabela, id_procurado):
     for i in tabela:
@@ -74,7 +81,6 @@ def validar_dados_atualizacao(requisicao):
     if erros_encontrados:
         erros_formatados = ", ".join(erros_encontrados)
         return {"error": f"Dados inválidos: {erros_formatados}"}
-    
     return None
     
 def atualizar_dados_usuario(usuario, requisicao):
@@ -95,4 +101,3 @@ def delete(lista, id_procurado):
             lista.remove(i)
             break
     escrever_arquivo(lista)
-
